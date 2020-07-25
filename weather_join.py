@@ -3,7 +3,7 @@
 import pandas as pd
 
 weather = pd.read_csv('centralParkWeather.csv')
-taxi = pd.read_csv('train.csv')
+taxi = pd.read_csv('train.csv', nrows = 1_000_000)
 
 # convert the timestamps in the taxi df to a date to merge with the weather df
 
@@ -12,6 +12,6 @@ def date(timestamp):
 
 taxi['DATE'] = taxi.apply(lambda x: date(x['key']), axis=1)
 
-df_join = pd.merge(taxi, weather, how='left', on=None)
 
+df_join = pd.merge(taxi, weather, how='left', on=None)
 df_join.to_csv('taxi_weather.csv')
