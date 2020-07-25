@@ -13,3 +13,5 @@ def date(timestamp):
 taxi['DATE'] = taxi.apply(lambda x: date(x['key']), axis=1)
 
 df_join = pd.merge(taxi, weather, how='left', on=None)
+
+df_join.to_csv('taxi_weather.csv')
